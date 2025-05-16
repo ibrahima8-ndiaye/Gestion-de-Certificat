@@ -18,6 +18,12 @@ class _InscriptionState extends State<Inscription> {
         child: Column(
           children: [
             SizedBox(height: 20,),
+            Text(
+              "Veuillez fournir les informations pour creer un compte",
+              // style: TextStyle(color: Colors.blueGrey, fontSize: 14,),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 10,),
             MyCustomForm(),
           ],
         ),

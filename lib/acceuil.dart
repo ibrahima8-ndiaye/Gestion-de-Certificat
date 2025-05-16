@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gestion_certificats/connexion.dart';
 import 'package:gestion_certificats/inscription.dart';
+import 'package:gestion_certificats/reinitialisation.dart';
 
 class Acceuil extends StatefulWidget {
   const Acceuil({super.key});
@@ -12,7 +13,7 @@ class Acceuil extends StatefulWidget {
 class _AcceuilState extends State<Acceuil> {
   // List <String> nomPages = ['Connexion', 'Inscription'];
   int indexPageCourant = 0;
-  List pages = [Connexion(), Inscription()];
+  List pages = [Connexion(), Inscription(), Reinitialisation()];
 
   @override
   Widget build(BuildContext context) {
@@ -28,28 +29,18 @@ class _AcceuilState extends State<Acceuil> {
             });
           },
         ),
-          // Icons.arrow_back),
-        // title: 
-        // TextButton(
-        //     onPressed: () {
-        //       setState(() {
-        //         indexPageCourant = 0;
-        //       });
-        //     },
-        //     child: const Text("Retour")
-        //     // child: const Text("Retour", style: TextStyle(color: Colors.green),)
-        // ),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         child: Container(
-          margin: const EdgeInsets.all(24),
+          margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 5),
           // decoration: BoxDecoration(color: Colors.red),
           child: Column(
             children: [
               _header(context),
+              // pages[indexPageCourant],
               pages[indexPageCourant],
-              _bottomRow(context),
+              indexPageCourant == 0 ? _bottomRow(context) : SizedBox(height: 0,),
             ]
           )
         ),
@@ -64,13 +55,14 @@ class _AcceuilState extends State<Acceuil> {
       // mainAxisSize: MainAxisSize.max,
       children: [
         SizedBox(
-          height: 200,
-          width: 400,
+          height: 150,
+          // width: 300,
           child: Image.asset('assets/images/logo-cert-green.png'),
         ),
         Text(
-          "Bienvenue dans la page de connexion",
-          style: TextStyle(fontSize: 18,),
+          // "Bienvenue dans la page de connexion",
+          "Votre certificat facilement",
+          style: TextStyle(fontSize: 18, color: const Color.fromARGB(255, 51, 103, 53)),
         ),
       ],
     );
@@ -81,7 +73,11 @@ class _AcceuilState extends State<Acceuil> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            setState(() {
+                indexPageCourant = 2;
+              });
+          },
           child: const Text("Mot de passe oublie ?",
             style: TextStyle(color: Colors.green),
           ),
