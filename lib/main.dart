@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:gestion_certificats/acceuil.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:gestion_certificats/connexion.dart';
+import 'package:gestion_certificats/demande_certificat.dart';
+
+// dark green
+// Color.fromARGB(255, 33, 129, 101)
+// light green background
+// Color.fromARGB(255, 230, 244, 231),
 
 void main() {
   runApp(const MainApp());
@@ -16,7 +24,9 @@ class MainApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
       ),
       // debugShowCheckedModeBanner: false,
-      home: Acceuil(),
+      // home: Acceuil(),
+      home: DemandeCertificat(),
+      // home: AcceuilHabitant(),
     );
   }
 }

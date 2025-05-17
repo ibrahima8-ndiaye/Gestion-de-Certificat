@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gestion_certificats/acceuil_hab.dart';
+import 'package:gestion_certificats/header.dart';
 
 class Connexion extends StatefulWidget {
   const Connexion({super.key});
@@ -11,17 +13,20 @@ class _ConnexionState extends State<Connexion> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        // margin: const EdgeInsets.all(24),
-        // decoration: BoxDecoration(color: Colors.red),
-        child: Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            SizedBox(height: 50,),
-            MyCustomForm(),
-            SizedBox(height: 20,),
-          ],
-        ),
+    return Material(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // SizedBox(height: 20,),
+          MyCustomHeader(),
+          SizedBox(height: 50,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: MyCustomForm(),
+          ),
+          SizedBox(height: 20,),
+        ],
+      ),
     );
   }
 }
@@ -89,6 +94,10 @@ class _MyCustomFormState extends State<MyCustomForm> {
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AcceuilHabitant()),
+                );
               },
               style: ElevatedButton.styleFrom(
                 shape: const StadiumBorder(),

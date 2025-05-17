@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gestion_certificats/acceuil_hab.dart';
 import 'package:gestion_certificats/connexion.dart';
+import 'package:gestion_certificats/header.dart';
 import 'package:gestion_certificats/inscription.dart';
 import 'package:gestion_certificats/reinitialisation.dart';
 
@@ -12,8 +14,8 @@ class Acceuil extends StatefulWidget {
 
 class _AcceuilState extends State<Acceuil> {
   // List <String> nomPages = ['Connexion', 'Inscription'];
-  int indexPageCourant = 0;
-  List pages = [Connexion(), Inscription(), Reinitialisation()];
+  // int indexPageCourant = 0;
+  // List pages = [Connexion(), Inscription(), Reinitialisation(), AcceuilHabitant(),];
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +24,13 @@ class _AcceuilState extends State<Acceuil> {
       appBar: AppBar(
         elevation: 5,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back_rounded),
           onPressed: () {
             setState(() {
-              indexPageCourant = 0;
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Acceuil()),
+              );
             });
           },
         ),
@@ -37,34 +42,14 @@ class _AcceuilState extends State<Acceuil> {
           // decoration: BoxDecoration(color: Colors.red),
           child: Column(
             children: [
-              _header(context),
+              MyCustomHeader(),
               // pages[indexPageCourant],
-              pages[indexPageCourant],
-              indexPageCourant == 0 ? _bottomRow(context) : SizedBox(height: 0,),
+              // pages[indexPageCourant],
+              // indexPageCourant == 0 ? _bottomRow(context) : SizedBox(height: 0,),
             ]
           )
         ),
       )
-    );
-  }
-
-
-  _header(context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      // mainAxisSize: MainAxisSize.max,
-      children: [
-        SizedBox(
-          height: 150,
-          // width: 300,
-          child: Image.asset('assets/images/logo-cert-green.png'),
-        ),
-        Text(
-          // "Bienvenue dans la page de connexion",
-          "Votre certificat facilement",
-          style: TextStyle(fontSize: 18, color: const Color.fromARGB(255, 51, 103, 53)),
-        ),
-      ],
     );
   }
 
@@ -75,7 +60,11 @@ class _AcceuilState extends State<Acceuil> {
         TextButton(
           onPressed: () {
             setState(() {
-                indexPageCourant = 2;
+                // indexPageCourant = 2;
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Reinitialisation()),
+                );
               });
           },
           child: const Text("Mot de passe oublie ?",
@@ -85,7 +74,11 @@ class _AcceuilState extends State<Acceuil> {
         TextButton(
             onPressed: () {
               setState(() {
-                indexPageCourant = 1;
+                // indexPageCourant = 1;
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Inscription()),
+                );
               });
             },
             child: const Text("Creer un compte", style: TextStyle(color: Colors.green),)

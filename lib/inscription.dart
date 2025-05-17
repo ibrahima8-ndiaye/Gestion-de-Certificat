@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gestion_certificats/header.dart';
 
 class Inscription extends StatefulWidget {
   const Inscription({super.key});
@@ -11,21 +12,28 @@ class _InscriptionState extends State<Inscription> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        margin: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom+24),
-        // padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom+24),
-        child: Column(
-          children: [
-            SizedBox(height: 20,),
-            Text(
-              "Veuillez fournir les informations pour creer un compte",
-              // style: TextStyle(color: Colors.blueGrey, fontSize: 14,),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 10,),
-            MyCustomForm(),
-          ],
+    return Material(
+      child: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.only(
+            left: 24,
+            right: 24,
+            bottom: MediaQuery.of(context).viewInsets.bottom+24
+          ),
+          // padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom+24),
+          child: Column(
+            children: [
+              MyCustomHeader(),
+              SizedBox(height: 20,),
+              Text(
+                "Veuillez fournir les informations pour creer un compte",
+                // style: TextStyle(color: Colors.blueGrey, fontSize: 14,),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 10,),
+              MyCustomForm(),
+            ],
+          ),
         ),
       ),
     );

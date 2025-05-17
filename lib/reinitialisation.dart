@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gestion_certificats/header.dart';
 
 class Reinitialisation extends StatefulWidget {
   const Reinitialisation({super.key});
@@ -12,16 +13,19 @@ class _ReinitialisationState extends State<Reinitialisation> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        // decoration: BoxDecoration(color: Colors.red),
-        child: Column(
-          children: [
-            SizedBox(height: 50,),
-            messageEnvoye ? CodeReinit() : MyCustomForm(),
-            SizedBox(height: 20,),
-            messageEnvoye ? _boutonConfirmer(context) : _boutonEnvoyer(context),
-          ],
-        ),
+    return Material(
+      child: Container(
+          // decoration: BoxDecoration(color: Colors.red),
+          child: Column(
+            children: [
+              MyCustomHeader(),
+              SizedBox(height: 50,),
+              messageEnvoye ? CodeReinit() : MyCustomForm(),
+              SizedBox(height: 20,),
+              messageEnvoye ? _boutonConfirmer(context) : _boutonEnvoyer(context),
+            ],
+          ),
+      ),
     );
   }
 
@@ -150,6 +154,8 @@ class _CodeReinitState extends State<CodeReinit> {
               onTapOutside: (event) {
                 FocusManager.instance.primaryFocus?.unfocus();
               },
+              keyboardType: TextInputType.number,
+              maxLength: 6,
               decoration: InputDecoration(
                 labelText: "code reinitialisation",
                 border: OutlineInputBorder(
