@@ -13,18 +13,15 @@ class _ReinitialisationState extends State<Reinitialisation> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Container(
-          // decoration: BoxDecoration(color: Colors.red),
-          child: Column(
-            children: [
-              MyCustomHeader(),
-              SizedBox(height: 50,),
-              messageEnvoye ? CodeReinit() : MyCustomForm(),
-              SizedBox(height: 20,),
-              messageEnvoye ? _boutonConfirmer(context) : _boutonEnvoyer(context),
-            ],
-          ),
+    return Scaffold(
+      body: Column(
+        children: [
+          MyCustomHeader(),
+          SizedBox(height: 50,),
+          messageEnvoye ? CodeReinit() : MyCustomForm(),
+          SizedBox(height: 20,),
+          messageEnvoye ? _boutonConfirmer(context) : _boutonEnvoyer(context),
+        ],
       ),
     );
   }

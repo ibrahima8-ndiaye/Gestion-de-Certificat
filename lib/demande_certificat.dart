@@ -16,14 +16,14 @@ class _DemandeCertificatState extends State<DemandeCertificat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyCustomAppbar(nomUtilisateur: "Baye Nor Diouf", profilUtilisateur: "Habitant",),
+      // appBar: MyCustomAppbar(nomUtilisateur: "Baye Mor Diouf", profilUtilisateur: "Habitant",),
+      appBar: MyCustomAppbar.titled(title: 'Demande de Certificat',),
       body: MyCustomCard(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            children: [
-              MyDemandeForm(),
-            ],
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: SingleChildScrollView(child: MyDemandeForm()),
           ),
         ),
       ),
@@ -49,21 +49,6 @@ class _MyDemandeFormState extends State<MyDemandeForm> {
     super.dispose();
   }
 
-  DateTime selectedDate = DateTime.now();
-
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-        context: context,
-        initialDate: selectedDate,
-        firstDate: DateTime(2015, 8),
-        lastDate: DateTime.now());
-    if (picked != null && picked != selectedDate) {
-      setState(() {
-        selectedDate = picked;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return  Form(
@@ -73,44 +58,12 @@ class _MyDemandeFormState extends State<MyDemandeForm> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text('Date de naissance', style: TextStyle(fontSize: 16, color: Color.fromARGB(255, 33, 129, 101)),),
-            SizedBox(height: 10,),
-            DateInputExample(),
-            // InputDatePickerFormField(
-            //   firstDate: DateTime(1900, 01, 01),
-            //   lastDate: DateTime.now(),
-            //   autofocus: true,
-            //   focusNode: _node,
-            //   // onTapOutside: (event) {
-            //   //   FocusManager.instance.primaryFocus?.unfocus();
-            //   // },
-            //   // onEditingComplete: _node.nextFocus,
-            //   ),
-            // TextFormField(
-            //   initialValue: "${selectedDate.toLocal()}".split(' ')[0],
-            //   onTapOutside: (event) {
-            //     FocusManager.instance.primaryFocus?.unfocus();
-            //   },
-            //   onEditingComplete: _node.nextFocus,
-            //   keyboardType: TextInputType.datetime,
-            //   decoration: InputDecoration(
-            //     // labelText: 'Date de naissance',
-            //     // hintText: "01/01/1995",
-            //     hintStyle: TextStyle(fontStyle: FontStyle.italic,),
-            //     border: OutlineInputBorder(
-            //         borderRadius: BorderRadius.circular(18),
-            //         borderSide: BorderSide.none
-            //     ),
-            //     fillColor: Colors.green.withValues(alpha: 0.1),
-            //     filled: true,
-            //     // suffixIcon: const Icon(Icons.calendar_month)),
-            //     suffixIcon: IconButton(
-            //       onPressed: () => _selectDate(context),
-            //       icon: const Icon(Icons.calendar_month),
-            //     ),
-            //   ),
-            // ),
-            SizedBox(height:10),
+            Text('Date de naissance', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 33, 129, 101)),),
+            SizedBox(height:MediaQuery.of(context).viewInsets.bottom+10),
+            DateInputExample(node: _node,),
+            SizedBox(height:MediaQuery.of(context).viewInsets.bottom+20),
+            Text('Lieu de naissance', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 33, 129, 101)),),
+            SizedBox(height:MediaQuery.of(context).viewInsets.bottom+10),
             TextFormField(
               onTapOutside: (event) {
                 FocusManager.instance.primaryFocus?.unfocus();
@@ -118,16 +71,27 @@ class _MyDemandeFormState extends State<MyDemandeForm> {
               onEditingComplete: _node.nextFocus,
               keyboardType: TextInputType.name,
               decoration: InputDecoration(
-                  labelText: "Nom",
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(18),
-                      borderSide: BorderSide.none
-                  ),
-                  fillColor: Colors.green.withValues(alpha: 0.1),
-                  filled: true,
-                  prefixIcon: const Icon(Icons.person)),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Color.fromARGB(255, 33, 129, 101), width: 2),
+          borderRadius: BorderRadius.circular(15),
+        ),
+                hintText: "Lieu de Naissance",
+                hintStyle: TextStyle(
+                  color: Color.fromARGB(180, 33, 129, 101),
+                  fontFamily: "Roboto",
+                ),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide: BorderSide.none
+                ),
+                fillColor: Colors.green.withValues(alpha: 0.1),
+                filled: true,
+                // prefixIcon: const Icon(Icons.home_outlined)
+              ),
             ),
-            SizedBox(height:10),
+            SizedBox(height:MediaQuery.of(context).viewInsets.bottom+20),
+            Text('Numero de telephone', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 33, 129, 101)),),
+            SizedBox(height:MediaQuery.of(context).viewInsets.bottom+10),
             TextFormField(
               onTapOutside: (event) {
                 FocusManager.instance.primaryFocus?.unfocus();
@@ -136,28 +100,95 @@ class _MyDemandeFormState extends State<MyDemandeForm> {
               onEditingComplete: _node.nextFocus,
               keyboardType: TextInputType.phone,
               decoration: InputDecoration(
-                  labelText: "Votre numero de telephone",
-                  hintText: "7x 123 45 67",
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(18),
-                      borderSide: BorderSide.none
-                  ),
-                  fillColor: Colors.green.withValues(alpha: 0.1),
-                  filled: true,
-                  prefixIcon: const Icon(Icons.phone)),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Color.fromARGB(255, 33, 129, 101), width: 2),
+          borderRadius: BorderRadius.circular(15),
+        ),
+                hintText: "7x 123 45 67",
+                hintStyle: TextStyle(
+                  color: Color.fromARGB(180, 33, 129, 101),
+                  fontFamily: "Roboto",
+                ),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide: BorderSide.none
+                ),
+                fillColor: Colors.green.withValues(alpha: 0.1),
+                filled: true,
+                // prefixIcon: const Icon(Icons.phone_outlined)
+              ),
             ),
-            SizedBox(height:MediaQuery.of(context).viewInsets.bottom+20),
+            SizedBox(height:MediaQuery.of(context).viewInsets.bottom+10),
+            Text('Numero d\'identification nationale', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 33, 129, 101)),),
+            SizedBox(height:MediaQuery.of(context).viewInsets.bottom+10),
+            TextFormField(
+              onTapOutside: (event) {
+                FocusManager.instance.primaryFocus?.unfocus();
+              },
+              maxLength: 13,
+              onEditingComplete: _node.nextFocus,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Color.fromARGB(255, 33, 129, 101), width: 2),
+          borderRadius: BorderRadius.circular(15),
+        ),
+                // labelText: "CNI",
+                hintText: "x xxxx xxxx xxxxx",
+                hintStyle: TextStyle(
+                  color: Color.fromARGB(180, 33, 129, 101),
+                  fontFamily: "Roboto",
+                ),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide: BorderSide.none
+                ),
+                fillColor: Colors.green.withValues(alpha: 0.1),
+                filled: true,
+                // prefixIcon: const Icon(Icons.perm_identity)
+              ),
+            ),
+            Text('Numero de la maison', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 33, 129, 101)),),
+            SizedBox(height:MediaQuery.of(context).viewInsets.bottom+10),
+            TextFormField(
+              onTapOutside: (event) {
+                FocusManager.instance.primaryFocus?.unfocus();
+              },
+              maxLength: 9,
+              onEditingComplete: _node.nextFocus,
+              keyboardType: TextInputType.phone,
+              decoration: InputDecoration(
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Color.fromARGB(255, 33, 129, 101), width: 2),
+          borderRadius: BorderRadius.circular(15),
+        ),
+                hintText: "Maison",
+                hintStyle: TextStyle(
+                  color: Color.fromARGB(180, 33, 129, 101),
+                  fontFamily: "Roboto",
+                ),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide: BorderSide.none
+                ),
+                fillColor: Colors.green.withValues(alpha: 0.1),
+                filled: true,
+                // prefixIcon: const Icon(Icons.home_outlined)
+              ),
+            ),
+            SizedBox(height:MediaQuery.of(context).viewInsets.bottom+12),
             ElevatedButton(
               onPressed: () {
               },
               style: ElevatedButton.styleFrom(
                 shape: const StadiumBorder(),
                 padding: const EdgeInsets.symmetric(vertical: 14),
-                backgroundColor: Colors.green,
+                backgroundColor: Color.fromARGB(255, 33, 129, 101),
+                foregroundColor: Colors.grey,
               ),
               child: const Text(
-                "Inscription",
-                style: TextStyle(fontSize: 20, color: Colors.white),
+                "Envoyer la demande",
+                style: TextStyle(fontSize: 18, color: Colors.white),
               ),
             )
           ],
@@ -168,12 +199,15 @@ class _MyDemandeFormState extends State<MyDemandeForm> {
 }
 
 class DateInputExample extends StatefulWidget {
+  final FocusScopeNode? node;
+  const DateInputExample({super.key, this.node});
+
   @override
-  _DateInputExampleState createState() => _DateInputExampleState();
+  State <DateInputExample> createState() => _DateInputExampleState();
 }
 
 class _DateInputExampleState extends State<DateInputExample> {
-  DateTime? selectedDate;
+  DateTime? selectedDate;// = DateTime(1990);
   TextEditingController dateController = TextEditingController();
 
   @override
@@ -192,34 +226,48 @@ class _DateInputExampleState extends State<DateInputExample> {
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
-        dateController.text = DateFormat('yyyy-MM-dd').format(picked);
+        dateController.text = DateFormat('dd/MM/yyyy').format(picked);
+      });
+    } 
+    if (picked == null) {
+      setState(() {
+        dateController.text = "31/01/1990";
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: [
-          TextFormField(
-            controller: dateController,
-            decoration: InputDecoration(
-              labelText: 'Select Date',
-              suffixIcon: IconButton(
-                icon: Icon(Icons.calendar_today),
-                onPressed: () => _selectDate(context),
-              ),
-            ),
-            readOnly: true, // Make the text field read-only
-          ),
-          ElevatedButton(
-            onPressed: () => _selectDate(context),
-            child: Text('Select Date'),
-          ),
-        ],
+    return TextFormField(
+      onTapOutside: (event) {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      autofocus: true,
+      onEditingComplete: widget.node!.nextFocus,
+      controller: dateController,
+      keyboardType: TextInputType.datetime,
+      decoration: InputDecoration(
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Color.fromARGB(255, 33, 129, 101), width: 2),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide.none
+        ),
+        fillColor: Colors.green.withValues(alpha: 0.1),
+        filled: true,
+        hintText: "Date de naissance",
+        hintStyle: TextStyle(
+          color: Color.fromARGB(180, 33, 129, 101),
+          fontFamily: "Roboto",
+        ),
+        suffixIcon: IconButton(
+          icon: Icon(Icons.calendar_month, color: Color.fromARGB(255, 33, 129, 101),),
+          onPressed: () => _selectDate(context),
+        ),
       ),
+      // readOnly: true, // Make the text field read-only
     );
   }
 }

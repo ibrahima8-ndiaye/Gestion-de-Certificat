@@ -21,7 +21,7 @@ class _ConnexionState extends State<Connexion> {
           MyCustomHeader(),
           SizedBox(height: 50,),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
+            padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width / 8),
             child: MyCustomForm(),
           ),
           SizedBox(height: 20,),

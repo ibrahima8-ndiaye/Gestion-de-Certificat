@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gestion_certificats/appbar.dart';
 import 'package:gestion_certificats/custom_card.dart';
+import 'package:gestion_certificats/demande_certificat.dart';
 
 class AcceuilHabitant extends StatefulWidget {
   const AcceuilHabitant({super.key});
@@ -12,23 +13,25 @@ class AcceuilHabitant extends StatefulWidget {
 class _AcceuilHabitantState extends State<AcceuilHabitant> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: _appbar(context, "Baye Mor Diouf", "Habitant")
-      appBar: MyCustomAppbar(nomUtilisateur: "Baye Mor Diouf", profilUtilisateur: "Habitant",),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          _boutonDemande(context),
-          _historiqueCertificats(context),
-        ],
+    return Material(
+      child: Scaffold(
+        // appBar: _appbar(context, "Baye Mor Diouf", "Habitant")
+        appBar: MyCustomAppbar(nomUtilisateur: "Baye Mor Diouf", profilUtilisateur: "Habitant",),
+        body: Column(
+          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          // crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            _boutonDemande(context),
+            _historiqueCertificats(context),
+          ],
+        ),
       ),
     );
   }
 
   _boutonDemande(context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 42, vertical: 24),
+      margin: EdgeInsets.only(left: 42, right: 42, top: 12, bottom: 24),
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(color: Colors.grey, blurRadius: 10, offset: Offset(0, 8))
@@ -36,18 +39,22 @@ class _AcceuilHabitantState extends State<AcceuilHabitant> {
       ),
       child: ElevatedButton(
         onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => DemandeCertificat()));
         },
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12.0)
           ),
-          padding: const EdgeInsets.symmetric(vertical: 12),
+          padding: const EdgeInsets.symmetric(vertical: 18),
           backgroundColor: Color.fromARGB(255, 33, 129, 101),
           foregroundColor: Color.fromARGB(155, 218, 236, 230),
         ),
-        child: const Text(
-          "Demander un certificat",
-          style: TextStyle(fontSize: 20, color: Colors.white),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 6),
+          child: Text(
+            "Demander un certificat",
+            style: TextStyle(fontSize: 20, color: Colors.white),
+          ),
         ),
       ),
     );     
@@ -55,54 +62,37 @@ class _AcceuilHabitantState extends State<AcceuilHabitant> {
 
 
   _historiqueCertificats(context) {
-    final double heightElementsEnHaut = 330; // cette valeur a ete determine manuellement, implementation a ameliorer
+    final double heightElementsEnHaut = 339; // cette valeur a ete determine manuellement, implementation a ameliorer
 
     return MyCustomCard(
-      child: ListView(
-          children: [
-            Text(
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 8),
+            child: Text(
               "Historique des certificats",
               textAlign: TextAlign.center,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Color.fromARGB(255, 33, 129, 101),),
             ),
-            CardHistoriqueCert(),
-            CardHistoriqueCert(),
-            CardHistoriqueCert(),
-            CardHistoriqueCert(),
-            CardHistoriqueCert(),
-            CardHistoriqueCert(),
-            CardHistoriqueCert(),
-          ],
-        ),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 24),
+            height: MediaQuery.of(context).size.height - heightElementsEnHaut,
+            child: ListView(
+                children: [
+                  CardHistoriqueCert(),
+                  CardHistoriqueCert(),
+                  CardHistoriqueCert(),
+                  CardHistoriqueCert(),
+                  CardHistoriqueCert(),
+                  CardHistoriqueCert(),
+                  CardHistoriqueCert(),
+                ],
+              ),
+          ),
+        ],
+      ),
     );
-
-    // return Container(
-    //   padding: EdgeInsets.symmetric(vertical: 24),
-    //   height: MediaQuery.of(context).size.height - heightElementsEnHaut,
-    //   decoration: ShapeDecoration(
-    //     shape: RoundedRectangleBorder(
-    //       borderRadius: BorderRadius.only(topLeft: Radius.elliptical(50, 50), topRight: Radius.elliptical(50, 50)),
-    //     ),
-    //     // color: Colors.amber,
-    //     color: Color.fromARGB(255, 230, 244, 231),
-    //   ),
-    //   child: ListView(
-    //     children: [
-    //       Text(
-    //         "Historique des certificats",
-    //         textAlign: TextAlign.center,
-    //         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Color.fromARGB(255, 33, 129, 101),),
-    //       ),
-    //       CardHistoriqueCert(),
-    //       CardHistoriqueCert(),
-    //       CardHistoriqueCert(),
-    //       CardHistoriqueCert(),
-    //       CardHistoriqueCert(),
-    //       CardHistoriqueCert(),
-    //       CardHistoriqueCert(),
-    //     ],
-    //   ),
-    // );
   }
 }
 
