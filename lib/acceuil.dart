@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gestion_certificats/acceuil_hab.dart';
-import 'package:gestion_certificats/connexion.dart';
 import 'package:gestion_certificats/header.dart';
 import 'package:gestion_certificats/inscription.dart';
 import 'package:gestion_certificats/reinitialisation.dart';

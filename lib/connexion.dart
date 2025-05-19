@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gestion_certificats/acceuil_hab.dart';
+import 'package:gestion_certificats/appbar.dart';
 import 'package:gestion_certificats/header.dart';
+import 'package:gestion_certificats/inscription.dart';
+import 'package:gestion_certificats/reinitialisation.dart';
 
 class Connexion extends StatefulWidget {
   const Connexion({super.key});
@@ -21,12 +24,51 @@ class _ConnexionState extends State<Connexion> {
           MyCustomHeader(),
           SizedBox(height: 50,),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width / 8),
-            child: MyCustomForm(),
+            padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width / 12),
+            child: Column(
+              children: [
+                MyCustomForm(),
+                SizedBox(height: 20,),
+                _bottomRow(context)
+              ],
+            ),
           ),
-          SizedBox(height: 20,),
         ],
       ),
+    );
+  }
+
+    _bottomRow(context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        TextButton(
+          onPressed: () {
+            setState(() {
+                // indexPageCourant = 2;
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Reinitialisation()),
+                );
+              });
+          },
+          child: const Text("Mot de passe oublie ?",
+            style: TextStyle(color: Colors.green),
+          ),
+        ),
+        TextButton(
+            onPressed: () {
+              setState(() {
+                // indexPageCourant = 1;
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Inscription()),
+                );
+              });
+            },
+            child: const Text("Creer un compte", style: TextStyle(color: Colors.green),)
+        )
+      ],
     );
   }
 }

@@ -15,12 +15,21 @@ class _ReinitialisationState extends State<Reinitialisation> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           MyCustomHeader(),
           SizedBox(height: 50,),
-          messageEnvoye ? CodeReinit() : MyCustomForm(),
-          SizedBox(height: 20,),
-          messageEnvoye ? _boutonConfirmer(context) : _boutonEnvoyer(context),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width / 12),
+              child: Column(
+                children: [
+                  SizedBox(height: 50,),
+                  messageEnvoye ? CodeReinit() : MyCustomForm(),
+                  SizedBox(height: 20,),
+                  messageEnvoye ? _boutonConfirmer(context) : _boutonEnvoyer(context),
+                ],
+              ),
+          ),
         ],
       ),
     );

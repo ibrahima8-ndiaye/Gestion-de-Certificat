@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gestion_certificats/acceuil.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:gestion_certificats/acceuil_hab.dart';
 import 'package:gestion_certificats/connexion.dart';
-import 'package:gestion_certificats/demande_certificat.dart';
 
 // dark green
 // Color.fromARGB(255, 33, 129, 101)

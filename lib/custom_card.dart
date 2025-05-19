@@ -8,7 +8,7 @@ class MyCustomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width / 20),
+      padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width / 24),
       // height: MediaQuery.of(context).size.height - heightElementsEnHaut,
       decoration: ShapeDecoration(
         shape: RoundedRectangleBorder(

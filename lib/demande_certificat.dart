@@ -16,10 +16,9 @@ class _DemandeCertificatState extends State<DemandeCertificat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: MyCustomAppbar(nomUtilisateur: "Baye Mor Diouf", profilUtilisateur: "Habitant",),
       appBar: MyCustomAppbar.titled(title: 'Demande de Certificat',),
       body: MyCustomCard(
-        child: Container(
+        child: SizedBox(
           height: MediaQuery.of(context).size.height,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -58,6 +57,7 @@ class _MyDemandeFormState extends State<MyDemandeForm> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            SizedBox(height: 12,),
             Text('Date de naissance', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 33, 129, 101)),),
             SizedBox(height:MediaQuery.of(context).viewInsets.bottom+10),
             DateInputExample(node: _node,),
@@ -190,7 +190,8 @@ class _MyDemandeFormState extends State<MyDemandeForm> {
                 "Envoyer la demande",
                 style: TextStyle(fontSize: 18, color: Colors.white),
               ),
-            )
+            ),
+            SizedBox(height:MediaQuery.of(context).viewInsets.bottom+12),
           ],
         ),
       ),

@@ -15,11 +15,8 @@ class _AcceuilHabitantState extends State<AcceuilHabitant> {
   Widget build(BuildContext context) {
     return Material(
       child: Scaffold(
-        // appBar: _appbar(context, "Baye Mor Diouf", "Habitant")
         appBar: MyCustomAppbar(nomUtilisateur: "Baye Mor Diouf", profilUtilisateur: "Habitant",),
         body: Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          // crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             _boutonDemande(context),
             _historiqueCertificats(context),
@@ -50,7 +47,7 @@ class _AcceuilHabitantState extends State<AcceuilHabitant> {
           foregroundColor: Color.fromARGB(155, 218, 236, 230),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 6),
+          padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Text(
             "Demander un certificat",
             style: TextStyle(fontSize: 20, color: Colors.white),
@@ -62,13 +59,13 @@ class _AcceuilHabitantState extends State<AcceuilHabitant> {
 
 
   _historiqueCertificats(context) {
-    final double heightElementsEnHaut = 339; // cette valeur a ete determine manuellement, implementation a ameliorer
+    final double heightElementsEnHaut = 375; // cette valeur a ete determine manuellement, implementation a ameliorer
 
     return MyCustomCard(
       child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 8),
+            padding: EdgeInsets.symmetric(vertical: 12),
             child: Text(
               "Historique des certificats",
               textAlign: TextAlign.center,
@@ -76,7 +73,7 @@ class _AcceuilHabitantState extends State<AcceuilHabitant> {
             ),
           ),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 24),
+            padding: EdgeInsets.symmetric(horizontal: 12),
             height: MediaQuery.of(context).size.height - heightElementsEnHaut,
             child: ListView(
                 children: [

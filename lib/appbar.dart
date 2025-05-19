@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gestion_certificats/acceuil.dart';
 import 'package:gestion_certificats/connexion.dart';
 
 // il faut appeler le constructeur MyCustomAppbar.titled() pour les pages ou il y a le bouton
@@ -56,13 +55,13 @@ class _MyCustomAppbarState extends State<MyCustomAppbar> {
             elevation: 10,
             backgroundColor: Color.fromARGB(245, 33, 129, 101),
           ),
-          _appbarBottom()
+          appbarBottom()
         ]
       ),
     );
   }
 
-  _appbarBottom() {
+  Widget appbarBottom() {
     if(widget.title == null) {
       return Column(
         children: [
@@ -98,7 +97,7 @@ class _MyCustomAppbarState extends State<MyCustomAppbar> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TextButton(
-              onPressed: () {},
+              onPressed: () { Navigator.pop(context); },
               style: TextButton.styleFrom(
                 foregroundColor: Colors.white,
               ),
