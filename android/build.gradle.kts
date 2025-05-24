@@ -19,3 +19,16 @@ subprojects {
 tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle:4.2.2")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31")
+        classpath("com.google.gms:google-services:4.3.10")
+        classpath("com.google.firebase:firebase-database:20.1.0")
+    }
+}

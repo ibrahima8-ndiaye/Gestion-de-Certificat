@@ -1,0 +1,44 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "gestion-certificats",
+          "appId": "1:132052658864:android:85a2e199b620a7106f2975",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "gestion-certificats",
+          "configurations": {
+            "android": "1:132052658864:android:85a2e199b620a7106f2975",
+            "ios": "1:132052658864:ios:3c48395f2d9ab7726f2975",
+            "macos": "1:132052658864:ios:3c48395f2d9ab7726f2975",
+            "web": "1:132052658864:web:a06bf90d053811226f2975",
+            "windows": "1:132052658864:web:9ff4602a3c9320836f2975"
+          }
+        }
+      }
+    }
+  },
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "emulators": {
+    "auth": {
+      "port": 9099
+    },
+    "ui": {
+      "enabled": true,
+      "port": 9098
+    },
+    "singleProjectMode": true,
+    "firestore": {
+      "port": 8080
+    },
+    "database": {
+      "port": 9000
+    }
+  }
+}

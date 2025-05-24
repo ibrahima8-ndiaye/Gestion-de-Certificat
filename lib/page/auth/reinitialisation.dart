@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gestion_certificats/header.dart';
+import 'package:gestion_certificats/widgets/header.dart';
 
 class Reinitialisation extends StatefulWidget {
   const Reinitialisation({super.key});
@@ -105,7 +105,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
               style: TextStyle(color: Colors.blueGrey),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 10,),
+            SizedBox(height: 20,),
             TextFormField(
               onTapOutside: (event) {
                 FocusManager.instance.primaryFocus?.unfocus();

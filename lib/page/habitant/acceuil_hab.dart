@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gestion_certificats/appbar.dart';
-import 'package:gestion_certificats/custom_card.dart';
-import 'package:gestion_certificats/demande_certificat.dart';
+import 'package:gestion_certificats/widgets/appbar.dart';
+import 'package:gestion_certificats/widgets/custom_card.dart';
+import 'package:gestion_certificats/page/habitant/demande_certificat.dart';
+import 'package:gestion_certificats/utils/db_service.dart';
 
 class AcceuilHabitant extends StatefulWidget {
   const AcceuilHabitant({super.key});
@@ -11,17 +12,38 @@ class AcceuilHabitant extends StatefulWidget {
 }
 
 class _AcceuilHabitantState extends State<AcceuilHabitant> {
+  final DatabaseService dbService = DatabaseService();
+  Map<String, dynamic>? donnees;
+  String? profil;
+  String? nom;
+  
+  @override
+  void initState() {
+    super.initState();
+    _getUserData();
+    
+  }
+  _getUserData() async {
+    donnees = await dbService.getCurrentUserData();
+    if(donnees != null) {
+      setState(() {
+        profil = donnees?['profil'];
+        nom = donnees?['nom'];
+      });
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Scaffold(
-        appBar: MyCustomAppbar(nomUtilisateur: "Baye Mor Diouf", profilUtilisateur: "Habitant",),
-        body: Column(
-          children: [
-            _boutonDemande(context),
-            _historiqueCertificats(context),
-          ],
-        ),
+    return Scaffold(
+      appBar: MyCustomAppbar(nomUtilisateur: nom, profilUtilisateur: profil,),
+      endDrawer: MyDrawer(nomUtilisateur: nom, profilUtilisateur: profil,),
+      body: Column(
+        children: [
+          _boutonDemande(context),
+          _historiqueCertificats(context),
+        ],
       ),
     );
   }
@@ -36,11 +58,14 @@ class _AcceuilHabitantState extends State<AcceuilHabitant> {
       ),
       child: ElevatedButton(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => DemandeCertificat()));
+          // Navigator.push(context, MaterialPageRoute(builder: (context) => DemandeCertificat()));
+          showDialog(context: context, builder: (context) {
+            return DemandeCertificat();
+          });
         },
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12.0)
+            borderRadius: BorderRadius.circular(10.0)
           ),
           padding: const EdgeInsets.symmetric(vertical: 18),
           backgroundColor: Color.fromARGB(255, 33, 129, 101),
